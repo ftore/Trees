@@ -61,6 +61,26 @@ public class TreeTraversal {
 		return Math.max(1 + height(root.left), 1 + height(root.right));
 	}
 	
+	public static boolean bstSearch(TreeNode root, int val) {
+		if(root == null) {
+			return false;
+		}
+		
+		TreeNode curr = root;
+		
+		while(curr != null) {
+			if(curr.val > val) {
+				curr = curr.left;
+			} else if(curr.val < val) {
+				curr = curr.right;
+			} else {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
 	public static TreeNode bstInsert(TreeNode root, int val) {
 		if(root == null) {
 			root = new TreeNode(val);
@@ -76,6 +96,35 @@ public class TreeTraversal {
 		return root;
 	}
 	
+	public static TreeNode bstInsertLoop(TreeNode root, int val) {
+		if(root == null) {
+			root = new TreeNode(val);
+			return root;
+		}
+		
+		TreeNode curr = root;
+		
+		boolean comp = curr.val > val;
+		
+		while(comp && curr.left != null ||
+				!comp && curr.right != null) {
+			if(comp) {
+				curr = curr.left;
+			} else {
+				curr = curr.right;
+			}
+			
+			comp = curr.val > val;
+		}
+		
+		if(comp) {
+			curr.left = new TreeNode(val);
+		} else {
+			curr.right = new TreeNode(val);
+		}
+		
+		return root;
+	}
 	
 	public static void main(String[] args) {
 		int[] vals = {4, 1, 2, 3, 5};
@@ -95,5 +144,4 @@ public class TreeTraversal {
 		System.out.println();
 		System.out.println("Hight is: " + height(root));
 	}
-
 }
