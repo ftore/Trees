@@ -1,7 +1,7 @@
 package binaryheaps;
 
 public class MinHeap {
-	private Integer[] keys;
+	private int[] keys;
 	private int size;
 	
 	public MinHeap() {
@@ -10,7 +10,7 @@ public class MinHeap {
 	
 	public MinHeap(int[] keys) {
 		size = keys.length;
-		this.keys = new Integer[size + 1];
+		this.keys = new int[size + 1];
 		
 		for(int i = 0; i < size; i++) {
 			this.keys[i + 1] = keys[i];
@@ -33,7 +33,7 @@ public class MinHeap {
 	private void resize(int capacity) {
 		if(capacity < size) return;
 		
-		Integer[] tmp = new Integer[capacity];
+		int[] tmp = new int[capacity];
 		for(int i = 1; i <= size; i++) {
 			tmp[i] = keys[i];
 		}
@@ -51,13 +51,13 @@ public class MinHeap {
 		swim(size);
 	}
 	
-	public Integer delMin() {
-		if(isEmpty()) return null;
+	public int delMin() {
+		if(isEmpty()) return -1;
 		
 		swap(1, size);
 		int min = keys[size--];
 		sink(1);
-		keys[size + 1] = null;
+		keys[size + 1] = -1;
 		if((size > 0) && (size == (keys.length - 1) / 2)) {
 			resize(keys.length / 2);
 		}
