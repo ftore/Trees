@@ -19,7 +19,6 @@ public class MinHeap {
 		for(int k = size/2; k >= 1; k--) {
 			sink(k);
 		}
-		
 	}
 	
 	public boolean isEmpty() {
@@ -100,7 +99,5 @@ public class MinHeap {
 		for(int i = 0; i < minHeap.size(); i++) {
 			System.out.println(minHeap.delMin());
 		}
-		
-		
 	}
 }
